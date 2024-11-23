@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [[ -z $DOTFILES ]]; then
+    DOTFILES=$HOME/.dotfiles
+fi
+
+pushd $DOTFILES
 
 
-echo "simen"
+
+
+
+

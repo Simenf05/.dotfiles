@@ -24,7 +24,7 @@ set $browser firefox
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/f41/default/f41-01-night.png fill
+output * bg $BACKGROUND_IMAGE fill
 #
 # Example configuration:
 #

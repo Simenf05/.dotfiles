@@ -1,2 +1,2 @@
-image=/usr/share/backgrounds/f41/default/f41-01-night.png
+image=$BACKGROUND_IMAGE
 ignore-empty-password

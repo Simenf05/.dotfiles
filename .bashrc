@@ -5,8 +5,6 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-. ./bash_profile
-
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
@@ -33,12 +31,6 @@ lp_theme powerline
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-. "$HOME/.cargo/env"
-
-alias wezterm='flatpak run org.wezfurlong.wezterm'
-alias spotify='flatpak run com.spotify.Client'
-export EDITOR="nvim"
 
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
