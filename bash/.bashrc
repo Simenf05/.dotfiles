@@ -24,8 +24,18 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
-source $DOTFILES/liquidprompt/liquidprompt
-source $DOTFILES/liquidprompt/themes/powerline/powerline.theme
+export DOTFILES="$HOME/.dotfiles"
+alias wezterm='flatpak run org.wezfurlong.wezterm'
+alias spotify='flatpak run com.spotify.Client'
+alias la='ls -la'
+
+export EDITOR="nvim"
+export GIT_EDITOR=$EDITOR
+export BACKGROUND_IMAGE="$DOTFILES/background/background.png"
+
+
+source "$HOME/.config/liquidprompt/liquidprompt"
+source "$HOME/.config/liquidprompt/themes/powerline/powerline.theme"
 lp_theme powerline
 
 export NVM_DIR="$HOME/.nvm"

@@ -20,11 +20,12 @@ set $menu wmenu-run
 
 # My browser
 set $browser firefox
+set $music 'flatpak run com.spotify.Client'
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg $BACKGROUND_IMAGE fill
+output * bg ~/.dotfiles/background/background.png fill
 #
 # Example configuration:
 #
@@ -37,8 +38,8 @@ output * bg $BACKGROUND_IMAGE fill
 # Example configuration:
 
 exec swayidle -w \
-         timeout 200 'swaylock -f' \
-         timeout 400 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 800 'swaylock -f' \
+         timeout 1600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -69,6 +70,8 @@ exec swayidle -w \
     # Start browser
     bindsym $mod+f exec $browser
 
+    bindsym $mod+p exec $music
+
     # Kill focused window
     bindsym $mod+Shift+q kill
 
@@ -89,7 +92,7 @@ exec swayidle -w \
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
     # Lock
-    bindsym $mod+Shift+Return exec "swaylock"
+    bindsym Super+Shift+Return exec "swaylock -f"
 
 # Moving around:
 #
@@ -114,6 +117,9 @@ exec swayidle -w \
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+
+    # Hide mouse cursor after a period of inactivity.
+    seat seat0 hide_cursor 3000
 #
 # Workspaces:
 #
@@ -225,7 +231,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command ~/.config/sway/bar.sh
 
     colors {
         statusline #ffffff
@@ -233,6 +239,18 @@ bar {
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
+
+#
+# Window borders and titlebar
+#
+
+default_border pixel 2
+default_floating_border pixel 2
+# titlebar_padding 1
+# titlebar_border_thickness 0
+smart_borders on
+
+
 
 input type:keyboard {
     xkb_layout simen

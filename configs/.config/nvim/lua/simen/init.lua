@@ -1,3 +1,2 @@
-require("simen.remap")
-require("simen.pref")
----  require("simen.telescope")
+-- require("simen.pref")
+-- require("simen.remap")
