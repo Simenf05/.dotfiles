@@ -6,5 +6,5 @@ fi
 
 pushd $DOTFILES
 
-stow bash
+stow home
 stow configs

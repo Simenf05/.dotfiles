@@ -250,7 +250,10 @@ default_floating_border pixel 2
 # titlebar_border_thickness 0
 smart_borders on
 
-
+exec swaymsg "workspace 1; exec $browser;"
+exec swaymsg "workspace 2; exec $term;"
+exec swaymsg "workspace 5; exec $music;"
+exec swaymsg "workspace 1;"
 
 input type:keyboard {
     xkb_layout simen
