@@ -16,7 +16,8 @@ set $right l
 # Your preferred terminal emulator
 set $term "foot"
 # Your preferred application launcher
-set $menu wmenu-run
+# set $menu wmenu-run
+set $menu 'rofi -show combi '
 
 # My browser
 set $browser firefox
@@ -252,7 +253,6 @@ smart_borders on
 
 exec swaymsg "workspace 1; exec $browser;"
 exec swaymsg "workspace 2; exec $term;"
-exec swaymsg "workspace 5; exec $music;"
 exec swaymsg "workspace 1;"
 
 input type:keyboard {

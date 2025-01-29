@@ -27,6 +27,7 @@ unset rc
 export DOTFILES="$HOME/.dotfiles"
 alias wezterm='flatpak run org.wezfurlong.wezterm'
 alias spotify='flatpak run com.spotify.Client'
+alias scenebuilder='flatpak run com.gluonhq.SceneBuilder'
 alias la='ls -la'
 
 export EDITOR="nvim"
@@ -56,3 +57,19 @@ finder() {
     fi
 }
 
+splay() {
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Play
+}
+
+spause() {
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause
+}
+
+sprev() {
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+}
+snext() {
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+}
+
+[ -f "/home/simen/.ghcup/env" ] && . "/home/simen/.ghcup/env" # ghcup-env

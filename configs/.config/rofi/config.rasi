@@ -1,5 +1,5 @@
 configuration {
-/*	modes: "window,drun,run,ssh";*/
+modes: "window,drun,run,ssh,combi";
 /*	font: "mono 12";*/
 /*	location: 0;*/
 /*	yoffset: 0;*/
@@ -32,7 +32,7 @@ terminal: "foot";
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
-/*	combi-modes: "window,run";*/
+combi-modes: "run,drun,ssh";
 /*	matching: "normal";*/
 /*	tokenize: true;*/
 /*	m: "-5";*/
@@ -149,3 +149,4 @@ terminal: "foot";
       sorting-method:    "name";
   }
 }
+@theme "rose-pine"
