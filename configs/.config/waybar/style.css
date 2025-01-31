@@ -1,0 +1,139 @@
+/*
+* Variant: Rosé Pine
+* Maintainer: DankChoir
+*/
+
+@define-color base            #191724; 
+@define-color surface         #1f1d2e;
+@define-color overlay         #26233a;
+
+@define-color muted           #6e6a86;
+@define-color subtle          #908caa;
+@define-color text            #e0def4;
+
+@define-color love            #eb6f92;
+@define-color gold            #f6c177;
+@define-color rose            #ebbcba;
+@define-color pine            #31748f;
+@define-color foam            #9ccfd8;
+@define-color iris            #c4a7e7;
+
+@define-color highlightLow    #21202e;
+@define-color highlightMed    #403d52;
+@define-color highlightHigh   #524f67;
+
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "SauceCodePro Nerd Font";
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: @base;
+    color: @text;
+}
+
+#window {
+    font-weight: bold;
+    font-family: "SauceCodePro Nerd Font";
+}
+
+#workspaces {
+    padding: 0 5px;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background: transparent;
+    color: @foam;
+    border-top: 2px solid transparent;
+}
+
+#workspaces button.focused {
+    color: @pine;
+    border-top: 2px solid @pine;
+}
+
+#workspaces button.urgent {
+    animation-name: blink;
+    animation-duration: 0.7s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#mode {
+    background: #64727D;
+    border-bottom: 3px solid white;
+}
+
+#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode {
+    padding: 0 3px;
+    margin: 0 2px;
+}
+
+#clock {
+    font-weight: bold;
+    color: @love;
+}
+
+#battery {
+    color: @iris;
+}
+
+#battery icon {
+    color: @iris;
+}
+
+#battery.charging {
+    color: @iris;
+}
+
+
+@keyframes blink {
+    to {
+        color: @love;
+    }
+}
+
+#battery.critical:not(.charging) {
+    color: @iris;
+    animation-name: blink;
+    animation-duration: 1.0s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#cpu {
+    color: @gold;
+}
+
+#memory {
+    color: @gold;
+}
+
+#network {
+    color: @pine;
+}
+
+#network.disconnected {
+    background: #f53c3c;
+}
+
+#pulseaudio {
+    color: @foam;
+}
+
+#pulseaudio.muted {
+}
+
+#custom-spotify {
+    color: @foam;
+}
+
+#tray {
+}

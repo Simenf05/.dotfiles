@@ -227,26 +227,43 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
+# bar {
+    # position top
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command ~/.config/sway/bar.sh
+    # status_command waybar
+    # ~/.config/sway/bar.sh
 
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
-}
+    #colors {
+    #    statusline #ffffff
+    #    background #323232
+    #    inactive_workspace #32323200 #32323200 #5c5c5c
+    #}
+# }
+
+exec waybar
 
 #
 # Window borders and titlebar
 #
 
-default_border pixel 2
-default_floating_border pixel 2
+# gaps inner 15
+
+set $base #191724
+set $love #eb6f92
+set $pine #31748f
+set $text #e0def4
+set $foam #9ccfd8
+
+client.focused $base $base $text $pine $foam
+client.focused_inactive $base $base $text
+client.unfocused $pine $base $text $pine $base
+client.urgent $love $base $base $text $love
+
+default_border pixel 1
+default_floating_border pixel 1
+
 # titlebar_padding 1
 # titlebar_border_thickness 0
 smart_borders on
