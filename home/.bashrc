@@ -34,7 +34,6 @@ export EDITOR="nvim"
 export GIT_EDITOR=$EDITOR
 export BACKGROUND_IMAGE="$DOTFILES/background/background.png"
 
-
 source "$HOME/.config/liquidprompt/liquidprompt"
 source "$HOME/.config/liquidprompt/themes/powerline/powerline.theme"
 lp_theme powerline
@@ -45,6 +44,8 @@ export NVM_DIR="$HOME/.nvm"
 
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
+
+export MANPAGER='nvim +Man!'
 
 finder() {
     local path=$(find ~ | fzf)
@@ -57,19 +58,9 @@ finder() {
     fi
 }
 
-splay() {
-    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Play
-}
-
-spause() {
-    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause
-}
-
-sprev() {
-    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-}
-snext() {
-    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+whouses () {
+        lsof -i:$1 | awk 'NR>1 {print $1}' | uniq
 }
 
 [ -f "/home/simen/.ghcup/env" ] && . "/home/simen/.ghcup/env" # ghcup-env
+. "$HOME/.cargo/env"

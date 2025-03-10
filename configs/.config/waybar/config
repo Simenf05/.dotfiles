@@ -27,7 +27,7 @@
     },
     "clock": {
         "interval": 1,
-        "format": "{:%Y.%m.%d %X}",
+        "format": "{:%W %Y.%m.%d %X}",
         "tooltip": false,
     },
     "cpu": {

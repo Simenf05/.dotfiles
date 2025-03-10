@@ -80,6 +80,7 @@ window#waybar {
     color: @love;
 }
 
+
 #battery {
     color: @iris;
 }
@@ -89,7 +90,7 @@ window#waybar {
 }
 
 #battery.charging {
-    color: @iris;
+    color: @gold;
 }
 
 
@@ -99,10 +100,11 @@ window#waybar {
     }
 }
 
+
 #battery.critical:not(.charging) {
     color: @iris;
     animation-name: blink;
-    animation-duration: 1.0s;
+    animation-duration: 0.5s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
