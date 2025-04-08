@@ -1,0 +1,4 @@
+modes="run,drun"
+term="ghostty"
+key_up="Ctrl-p"
+key_down="Ctrl-n"

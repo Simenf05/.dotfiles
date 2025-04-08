@@ -17,10 +17,10 @@ set $right l
 set $term "ghostty"
 # Your preferred application launcher
 # set $menu wmenu-run
-set $menu 'rofi -show combi '
+set $menu 'wofi --show run,drun'
 
 # My browser
-set $browser firefox
+set $browser 'firefox'
 set $music 'flatpak run com.spotify.Client'
 
 ### Output configuration
@@ -97,7 +97,8 @@ bindsym $mod+Shift+p mode "paused"; exec swaymsg "inhibit_idle focus"
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaymsg exit
 
     # Lock
     bindsym Super+Shift+Return exec "swaylock -f"
@@ -281,6 +282,7 @@ exec swaymsg "workspace 1;"
 
 input type:keyboard {
     xkb_layout simen
+    #xkb_variant dvp
     xkb_options caps:swapescape 
     # ,altwin:swap_alt_win
 }
