@@ -39,8 +39,10 @@ output * bg ~/.dotfiles/background/background.png fill
 # Example configuration:
 
 exec swayidle -w \
-         timeout 300 'swaylock -f' \
+         timeout 250 'brightnessctl s 40%' \
+         timeout 300 'swaylock -f && brightnessctl s 100%' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         resume 'brightnessctl s 100%' \
          before-sleep 'swaylock -f'
 
 mode "paused" {

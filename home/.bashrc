@@ -29,14 +29,15 @@ alias wezterm='flatpak run org.wezfurlong.wezterm'
 alias spotify='flatpak run com.spotify.Client'
 alias scenebuilder='flatpak run com.gluonhq.SceneBuilder'
 alias la='ls -la'
+alias bigfetch='fastfetch -c $HOME/.config/fastfetch/big.jsonc'
 
 export EDITOR="nvim"
 export GIT_EDITOR=$EDITOR
 export BACKGROUND_IMAGE="$DOTFILES/background/background.png"
 
-source "$HOME/.config/liquidprompt/liquidprompt"
-source "$HOME/.config/liquidprompt/themes/powerline/powerline.theme"
-lp_theme powerline
+# source "$DOTFILES/configs/.config/liquidprompt/liquidprompt"
+# source "$DOTFILES/configs/.config/liquidprompt/themes/powerline/powerline.theme"
+# lp_theme powerline
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -69,3 +70,9 @@ whouses () {
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1="\u \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+

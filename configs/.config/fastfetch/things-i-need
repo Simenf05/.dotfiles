@@ -1,0 +1,25 @@
+System:
+
+- username
+- os
+- kernel
+- packages
+- localip
+- uptime
+
+Software:
+
+- wm
+- term
+- shell
+- editor
+- music
+
+Hardware:
+
+- cpu
+- gpu
+- cpu usage
+- disk usage
+- ram usage
+
