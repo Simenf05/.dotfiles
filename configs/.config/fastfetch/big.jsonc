@@ -96,6 +96,25 @@
             "key": "╰─󰅐",
             "keyColor": "green",
             "format": "{days} days, {hours} hours"
-        }
+        },
+
+        // "break",
+        // {
+        //     "type": "cpu",
+        //     "keyColor": "cyan",
+        //     "key": "╭─"
+
+        // },
+        // {
+        //     "type": "gpu",
+        //     "key": "",
+        //     "keyColor": "cyan"
+        // },
+        // {
+        //     "type": "memory",
+        //     "format": "{used} of {total}",
+        //     "key": "",
+        //     "keyColor": "cyan"
+        // }
     ]
 }

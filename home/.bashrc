@@ -30,6 +30,7 @@ alias spotify='flatpak run com.spotify.Client'
 alias scenebuilder='flatpak run com.gluonhq.SceneBuilder'
 alias la='ls -la'
 alias bigfetch='fastfetch -c $HOME/.config/fastfetch/big.jsonc'
+alias lines='wc $(find . -type f) -l'
 
 export EDITOR="nvim"
 export GIT_EDITOR=$EDITOR
@@ -48,8 +49,11 @@ eval "$(fzf --bash)"
 
 export MANPAGER='nvim +Man!'
 
+alias goodfind='find ~ -type d \( -path ~/Downloads -o -path ~/.cache -o -path ~/.local -o -path ~/.var -o -path ~/.mozilla -o -path ~/.vscode \) -prune -o -type d \( -name ".git" -o -name "cache" -o -name "target" -o -name "pkg" \) -prune -o -print'
+alias goodfind2='find ~/Public ~/git ~/Documents ~/Downloads'
+
 finder() {
-    local path=$(find ~ | fzf)
+    local path=$(goodfind | fzf)
     if [ ${#path} = 0 ]; then return; fi
     if [ -f $path ]; then 
         cd $( dirname $path )
@@ -65,6 +69,7 @@ whouses () {
 
 
 [ -f "/home/simen/.ghcup/env" ] && . "/home/simen/.ghcup/env" # ghcup-env
+
 . "$HOME/.cargo/env"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -76,3 +81,4 @@ parse_git_branch() {
 }
 export PS1="\u \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 
+fastfetch

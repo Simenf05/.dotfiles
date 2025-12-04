@@ -19,6 +19,7 @@ set $term "ghostty"
 # set $menu wmenu-run
 set $menu 'wofi --show run,drun'
 
+
 # My browser
 set $browser 'firefox'
 set $music 'flatpak run com.spotify.Client'
@@ -37,17 +38,19 @@ output * bg ~/.dotfiles/background/background.png fill
 ### Idle configuration
 #
 # Example configuration:
+# timeout 250 'brightnessctl s 40%' \
+# && brightnessctl s 100%' \
+# resume 'brightnessctl s 100%' \
 
 exec swayidle -w \
-         timeout 250 'brightnessctl s 40%' \
-         timeout 300 'swaylock -f && brightnessctl s 100%' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         resume 'brightnessctl s 100%' \
-         before-sleep 'swaylock -f'
+    timeout 400 'swaylock -f' \
+    timeout 800 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -f'
 
 mode "paused" {
     bindsym Escape mode "default"; exec swaymsg "inhibit_idle none"
     bindsym Return mode "default"; exec swaymsg "inhibit_idle none"
+    bindsym $mod+m fullscreen
 }
 
 bindsym $mod+Shift+p mode "paused"; exec swaymsg "inhibit_idle focus"
@@ -169,7 +172,7 @@ bindsym $mod+Shift+p mode "paused"; exec swaymsg "inhibit_idle focus"
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
+    bindsym $mod+t layout tabbed
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
@@ -231,7 +234,7 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
-    bindsym Print exec grim
+    bindsym Print exec grim -g "$(slurp)" - | wl-copy
 
 #
 # Status Bar:
@@ -252,7 +255,8 @@ bindsym $mod+r mode "resize"
     #}
 # }
 
-exec waybar
+bindsym $mod+w exec waybar
+bindsym $mod+Shift+w exec "pkill waybar"
 
 #
 # Window borders and titlebar
@@ -283,14 +287,19 @@ exec swaymsg "workspace 2; exec $term;"
 exec swaymsg "workspace 1;"
 
 input type:keyboard {
-    xkb_layout simen
-    #xkb_variant dvp
-    xkb_options caps:swapescape 
+    xkb_layout no,no(dvorak)
+    # xkb_variant dvorak
+    xkb_options "caps:swapescape,grp:rctrl_toggle"
     # ,altwin:swap_alt_win
+
+    repeat_rate 30
+    repeat_delay 180
+
 }
 
 input type:touchpad {
-       tap enabled 
-       natural_scroll enabled
+    tap enabled 
+    natural_scroll enabled
 }
+
 include /etc/sway/config.d/*
