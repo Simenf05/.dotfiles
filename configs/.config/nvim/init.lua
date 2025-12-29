@@ -1,7 +1,6 @@
-require("simen.pref")
-
 require("config.lazy")
 
+require("simen.pref")
 require("simen.remap")
 
 
