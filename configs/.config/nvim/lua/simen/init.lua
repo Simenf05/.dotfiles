@@ -1,2 +1,0 @@
--- require("simen.pref")
--- require("simen.remap")
