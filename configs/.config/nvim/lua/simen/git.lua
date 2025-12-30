@@ -37,6 +37,7 @@ require('gitsigns').setup {
     function toggle ()
       gitsigns.toggle_linehl()
       gitsigns.toggle_current_line_blame()
+      gitsigns.toggle_word_diff()
     end
 
     vim.keymap.set('n', '<leader>gt', toggle)
