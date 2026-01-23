@@ -7,7 +7,7 @@ fi
 
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+    PATH="/opt/riscv/bin:$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH
 
@@ -28,7 +28,7 @@ export DOTFILES="$HOME/.dotfiles"
 alias wezterm='flatpak run org.wezfurlong.wezterm'
 alias spotify='flatpak run com.spotify.Client'
 alias scenebuilder='flatpak run com.gluonhq.SceneBuilder'
-alias la='ls -la'
+alias la='clear && ls -la'
 alias bigfetch='fastfetch -c $HOME/.config/fastfetch/big.jsonc'
 alias lines='wc $(find . -type f) -l'
 
@@ -49,22 +49,31 @@ eval "$(fzf --bash)"
 
 export MANPAGER='nvim +Man!'
 
-alias goodfind='find ~ -type d \( -path ~/Downloads -o -path ~/.cache -o -path ~/.local -o -path ~/.var -o -path ~/.mozilla -o -path ~/.vscode \) -prune -o -type d \( -name ".git" -o -name "cache" -o -name "target" -o -name "pkg" \) -prune -o -print'
-alias goodfind2='find ~/Public ~/git ~/Documents ~/Downloads'
+# alias goodfind='find ~ -type d \( -path ~/Downloads -o -path ~/.cache -o -path ~/.local -o -path ~/.var -o -path ~/.mozilla -o -path ~/.vscode \) -prune -o -type d \( -name ".git" -o -name "cache" -o -name "target" -o -name "pkg" \) -prune -o -print'
+# alias goodfind2='find ~/Public ~/git ~/Documents ~/Downloads'
+
+goodfind() {
+    local root="${1:-$HOME}"
+
+    fd . "$root" -H -I \
+      -E '{Downloads,.cache,.local,.var,.mozilla,.vscode,.git,cache,target,pkg}'
+}
 
 finder() {
-    local path=$(goodfind | fzf)
-    if [ ${#path} = 0 ]; then return; fi
-    if [ -f $path ]; then 
-        cd $( dirname $path )
-        $EDITOR $path
-    elif [ -d $path ]; then
-        cd $path    
+    local path
+
+    path="$(goodfind "$1" | fzf --exit-0)" || return
+
+    if [ -f "$path" ]; then
+        cd "$(dirname "$path")" || return
+        "$EDITOR" "$path"
+    elif [ -d "$path" ]; then
+        cd "$path" || return
     fi
 }
 
 whouses () {
-        lsof -i:$1 | awk 'NR>1 {print $1}' | uniq
+    lsof -i:$1 | awk 'NR>1 {print $1}' | uniq
 }
 
 
@@ -77,7 +86,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 export PS1="\u \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 
