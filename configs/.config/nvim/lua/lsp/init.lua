@@ -16,15 +16,6 @@ vim.lsp.config("clangd", {
 		"--background-index",
 		"--clang-tidy",
 		"--completion-style=detailed",
-		"--fallback-style=llvm",
-		"--query-driver=/usr/bin/gcc,/usr/bin/clang",
-	},
-	init_options = {
-		fallbackFlags = {
-			"-I/usr/include",
-			"-I/usr/local/include",
-			"-std=c11",
-		},
 	},
 })
 

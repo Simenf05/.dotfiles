@@ -40,7 +40,7 @@ export BACKGROUND_IMAGE="$DOTFILES/background/background.png"
 # source "$DOTFILES/configs/.config/liquidprompt/themes/powerline/powerline.theme"
 # lp_theme powerline
 
-export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="/usr/share/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
@@ -89,5 +89,10 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 export PS1="\u \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+force_color_prompt=yes
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias less='less -R'
 
 fastfetch

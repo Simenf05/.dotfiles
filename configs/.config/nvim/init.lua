@@ -14,8 +14,12 @@ vim.pack.add({
 	gh("nvim-telescope/telescope.nvim"),
 	gh("stevearc/conform.nvim"),
 	gh("lukas-reineke/indent-blankline.nvim"),
-	gh("nvim-treesitter/nvim-treesitter"),
+    {
+        src = gh("ThePrimeagen/harpoon"),
+        version = "harpoon2",
+    },
 })
+
 
 vim.cmd("colorscheme rose-pine")
 
@@ -24,3 +28,4 @@ require("simen.git")
 
 require("lsp")
 require("simen.format")
+
