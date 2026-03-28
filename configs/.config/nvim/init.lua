@@ -6,18 +6,21 @@ local gh = function(x)
 end
 
 vim.pack.add({
-    gh("neovim/nvim-lspconfig"),
-	gh("saghen/blink.cmp"),
+	gh("neovim/nvim-lspconfig"),
 	gh("lewis6991/gitsigns.nvim"),
 	gh("rose-pine/neovim"),
 	gh("nvim-lua/plenary.nvim"),
 	gh("nvim-telescope/telescope.nvim"),
 	gh("stevearc/conform.nvim"),
-	gh("lukas-reineke/indent-blankline.nvim"),
-    {
-        src = gh("ThePrimeagen/harpoon"),
-        version = "harpoon2",
-    },
+	gh("windwp/nvim-autopairs"),
+	{
+		src = gh("ThePrimeagen/harpoon"),
+		version = "harpoon2",
+	},
+	{
+		src = gh("saghen/blink.cmp"),
+		version = "v1.9.1",
+	},
 })
 
 
@@ -28,4 +31,3 @@ require("simen.git")
 
 require("lsp")
 require("simen.format")
-
