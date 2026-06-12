@@ -35,6 +35,7 @@ alias lines='wc $(find . -type f) -l'
 export EDITOR="nvim"
 export GIT_EDITOR=$EDITOR
 export BACKGROUND_IMAGE="$DOTFILES/background/background.png"
+export HISTCONTROL=ignoreboth:erasedups
 
 # source "$DOTFILES/configs/.config/liquidprompt/liquidprompt"
 # source "$DOTFILES/configs/.config/liquidprompt/themes/powerline/powerline.theme"
@@ -77,7 +78,6 @@ whouses () {
 }
 
 
-[ -f "/home/simen/.ghcup/env" ] && . "/home/simen/.ghcup/env" # ghcup-env
 
 . "$HOME/.cargo/env"
 
@@ -96,4 +96,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias less='less -R'
 
+
 fastfetch
+
+[ -f "/home/simen/.ghcup/env" ] && . "/home/simen/.ghcup/env" # ghcup-env

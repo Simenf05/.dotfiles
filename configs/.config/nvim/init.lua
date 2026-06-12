@@ -13,6 +13,8 @@ vim.pack.add({
 	gh("nvim-telescope/telescope.nvim"),
 	gh("stevearc/conform.nvim"),
 	gh("windwp/nvim-autopairs"),
+	gh("nvim-treesitter/nvim-treesitter"),
+	gh("tpope/vim-sleuth"),
 	{
 		src = gh("ThePrimeagen/harpoon"),
 		version = "harpoon2",
@@ -23,11 +25,21 @@ vim.pack.add({
 	},
 })
 
-
 vim.cmd("colorscheme rose-pine")
 
 require("simen.remap")
 require("simen.git")
 
 require("lsp")
+
+local files = { "rust", "javascript", "go", "typescript", "lua", "python", "c", "java" }
+
+require("nvim-treesitter").install(files)
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = files,
+	callback = function()
+		vim.treesitter.start()
+	end,
+})
+
 require("simen.format")

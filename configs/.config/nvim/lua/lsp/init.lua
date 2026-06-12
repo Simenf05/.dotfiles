@@ -24,5 +24,7 @@ vim.lsp.enable({
 	"clangd",
 	"ts_ls",
 	"lua_ls",
-    "pyright",
+	"pyright",
+	"hls",
+	"gopls",
 })

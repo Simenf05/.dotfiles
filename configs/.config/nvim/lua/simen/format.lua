@@ -1,6 +1,7 @@
 require("conform").setup({
 	formatters_by_ft = {
-        c = { lsp_format = "fallback" },
+		go = { "gofmt" },
+		c = { lsp_format = "fallback" },
 		lua = { "stylua" },
 		rust = { "rustfmt", lsp_format = "fallback" },
 		javascript = { "prettierd", "prettier", stop_after_first = true },
