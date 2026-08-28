@@ -7,7 +7,7 @@ fi
 
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-    PATH="/opt/riscv/bin:$HOME/.local/bin:$HOME/bin:$PATH"
+    PATH="/opt/riscv/bin:/opt/homebrew/bin:$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH
 
@@ -36,8 +36,12 @@ export EDITOR="nvim"
 export GIT_EDITOR=$EDITOR
 export BACKGROUND_IMAGE="$DOTFILES/background/background.png"
 export HISTCONTROL=ignoreboth:erasedups
+export BASH_SILENCE_DEPRECATION_WARNING=1
+export PATH=/opt/homebrew/share/google-cloud-sdk/bin:"$PATH"
+
 
 # source "$DOTFILES/configs/.config/liquidprompt/liquidprompt"
+#
 # source "$DOTFILES/configs/.config/liquidprompt/themes/powerline/powerline.theme"
 # lp_theme powerline
 
@@ -77,13 +81,8 @@ whouses () {
     lsof -i:$1 | awk 'NR>1 {print $1}' | uniq
 }
 
-
-
 . "$HOME/.cargo/env"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
@@ -95,8 +94,8 @@ force_color_prompt=yes
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias less='less -R'
-
-
-fastfetch
+alias kubectl="kubecolor"
 
 [ -f "/home/simen/.ghcup/env" ] && . "/home/simen/.ghcup/env" # ghcup-env
+
+fastfetch

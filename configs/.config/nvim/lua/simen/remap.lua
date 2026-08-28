@@ -6,7 +6,14 @@ vim.keymap.set("n", "n", "nzz")
 vim.keymap.set("n", "N", "Nzz")
 vim.keymap.set("n", "<C-o>", "<C-o>zz")
 vim.keymap.set("n", "<C-i>", "<C-i>zz")
+vim.keymap.set("n", "gd", "gdzz")
 
+
+
+-- Quickfix
+vim.keymap.set('n', '<leader>q', '<cmd>q')
+vim.keymap.set('n', '<leader>cn', '<cmd>cn')
+vim.keymap.set('n', '<leader>cp', '<cmd>cp')
 
 -- Clear highlights
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')

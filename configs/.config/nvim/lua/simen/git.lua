@@ -33,12 +33,25 @@ require("gitsigns").setup({
 	on_attach = function(bufnr)
 		local gitsigns = require("gitsigns")
 
-		function toggle()
+		-- Fixed: Added 'local' so this function doesn't leak into the global scope
+		local function toggle_ui_modes()
 			gitsigns.toggle_linehl()
 			gitsigns.toggle_current_line_blame()
 			gitsigns.toggle_word_diff()
 		end
 
-		vim.keymap.set("n", "<leader>gt", toggle)
+		-- Fixed: Passed { buffer = bufnr } so keymaps only apply to active Git files
+		vim.keymap.set("n", "<leader>gt", toggle_ui_modes, { buffer = bufnr, desc = "Toggle Git UI Highlights" })
+
+		-- Toggle Gitsigns diffthis on/off
+		vim.keymap.set("n", "<leader>gd", function()
+			if vim.wo.diff then
+				-- If diff mode is active, close the diff window
+				vim.cmd("wincmd p | q")
+			else
+				-- If not active, open the diff window
+				gitsigns.diffthis()
+			end
+		end, { buffer = bufnr, desc = "Toggle Git Diff View" })
 	end,
 })

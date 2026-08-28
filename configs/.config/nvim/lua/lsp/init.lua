@@ -19,12 +19,29 @@ vim.lsp.config("clangd", {
 	},
 })
 
+vim.lsp.config("gopls", {
+	capabilities = {
+		workspace = {
+			didChangeWatchedFiles = {
+				dynamicRegistration = false, -- Disables Neovim's buggy built-in watcher
+			},
+		},
+	},
+	settings = {
+		gopls = {
+			buildFlags = { "-tags=integration" },
+		},
+	},
+})
+
 vim.lsp.enable({
 	"rust_analyzer",
 	"clangd",
+	"jdtls",
 	"ts_ls",
 	"lua_ls",
 	"pyright",
 	"hls",
 	"gopls",
+	"marksman",
 })
