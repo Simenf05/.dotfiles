@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+doas openconnect \
+    --protocol=anyconnect \
+    --external-browser=noe \
+    --csd-wrapper=/usr/lib/openconnect/csd-wrapper.sh \
+    vpn.ntnu.no 2>&1 |
+grep --line-buffered 'Failed to spawn external browser for' |
+sed --unbuffered 's/.*browser for //' |
+while IFS= read -r url; do
+    firefox "$url"
+done
